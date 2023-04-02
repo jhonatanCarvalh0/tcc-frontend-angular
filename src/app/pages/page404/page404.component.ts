@@ -21,13 +21,13 @@ export class Page404Component implements OnInit {
       const starText = this.renderer.createText('');
       this.renderer.appendChild(star, starText);
 
-      const appPage404 = document.querySelector('app-page404');
-      this.renderer.appendChild(appPage404, star);
+      const appPage404Body = document.querySelector('.body');
+      this.renderer.appendChild(appPage404Body, star);
 
       const interval = setInterval(() => {
         if (right >= screen.width) {
           clearInterval(interval);
-          this.renderer.removeChild(appPage404, star);
+          this.renderer.removeChild(appPage404Body, star);
         }
 
         right += 3;
