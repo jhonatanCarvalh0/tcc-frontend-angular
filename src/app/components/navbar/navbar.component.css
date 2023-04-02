@@ -1,0 +1,66 @@
+
+.logo-wrapper p {
+  max-width: 70px;
+}
+
+.logo-wrapper svg {
+  /* gradient and fallback color */
+  max-width: 70px;
+}
+
+.logo-wrapper img {
+  width: 100px;
+}
+
+.logo-wrapper a {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1.3em;
+  float: right !important;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  font-size: 32px;
+  transition: all 0.1s ease-in;
+  -moz-transition: all 0.1s ease-in;
+  -webkit-transition: all 0.1s ease-in;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.pull-right {
+  float: right !important;
+  padding-top: 2em;
+}
+
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+
+.nav-wrapper {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+.nav-wrapper li {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.nav-wrapper a {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  font-size: 16px;
+  margin-left: 25px;
+  transition: all 0.1s ease-in;
+  -moz-transition: all 0.1s ease-in;
+  -webkit-transition: all 0.1s ease-in;
+}

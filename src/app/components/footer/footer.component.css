@@ -1,0 +1,44 @@
+.page-footer {
+  background-color: #f1f3f3;
+  text-align: center;
+  color: #090909;
+  padding: 60px 0;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+div {
+  display: block;
+}
+
+.page-footer .icon {
+  color: #c2c3c3;
+  margin: 0 10px;
+}
+
+a {
+  color: #337ab7;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+svg {
+  width: 24px;
+}
+
+.page-footer p {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 26px;
+  color: #a5a5a5;
+}
+
+.page-footer p a {
+  color: #551a70;
+  font-weight: 600;
+}
