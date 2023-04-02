@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation, Renderer2 } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewEncapsulation,
+  Renderer2,
+} from '@angular/core';
 
 @Component({
   selector: 'app-page404',
@@ -13,7 +19,7 @@ export class Page404Component implements OnInit {
 
     setInterval(() => {
       let right = Math.random() * 500;
-      const top = Math.random() * screen.height;
+      const top = Math.random() * (screen.height * 0.85);
 
       const star = this.renderer.createElement('div');
       this.renderer.addClass(star, 'star');

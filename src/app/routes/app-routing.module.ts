@@ -8,6 +8,7 @@ import { MainComponent } from '../pages/main/main.component';
 import { LoginComponent } from '../pages/login/login.component';
 import { RegisterComponent } from '../pages/register/register.component';
 import { Page404Component } from '../pages/page404/page404.component';
+import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 
 const routes: Routes = [
   /**/
@@ -31,6 +32,14 @@ const routes: Routes = [
   {
     path: '404',
     component: Page404Component,
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '404',
   },
 ];
 
