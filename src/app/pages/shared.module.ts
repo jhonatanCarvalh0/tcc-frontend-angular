@@ -15,6 +15,8 @@ import { RouterModule } from '@angular/router';
 import { Page404Component } from './page404/page404.component';
 import { SharedComponentsModule } from '../components/sharedComponents.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { IngressoBensMoveisComponent } from './bens-moveis/ingresso-bens-moveis/ingresso-bens-moveis.component';
+import { BensMoveisModule } from './bens-moveis/bens-moveis.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RouterModule,
     SharedLayoutModule,
     SharedComponentsModule,
+    BensMoveisModule
   ],
   exports: [
     LoginComponent,
