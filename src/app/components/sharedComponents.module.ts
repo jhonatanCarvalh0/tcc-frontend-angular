@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { HeaderDashboardComponent } from './header-dashboard/header-dashboard.component';
+import { PrimeNGModule } from './prime-ng/prime-ng.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { HeaderDashboardComponent } from './header-dashboard/header-dashboard.co
     SidenavComponent,
     HeaderDashboardComponent,
   ],
-  imports: [CommonModule, AngularMaterialModule, RouterModule],
+  imports: [CommonModule, AngularMaterialModule, PrimeNGModule, RouterModule],
   exports: [
     NavbarComponent,
     HeaderComponent,
