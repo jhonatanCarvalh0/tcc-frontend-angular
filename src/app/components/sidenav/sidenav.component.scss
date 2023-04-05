@@ -23,6 +23,10 @@
       &:hover,
       &.is-active {
         transition: all 0.9s;
+        .p-menuitem-text {
+          transition: all 0.9s;
+          color: white;
+        }
         .p-menuitem-link {
           transition: all 0.9s;
           background-color: transparent;
@@ -60,6 +64,12 @@
         color: #808191;
         padding: 0;
         margin-top: 26px;
+        border: none;
+
+        &-active {
+          color: white;
+          box-shadow: none;
+        }
       }
     }
 
