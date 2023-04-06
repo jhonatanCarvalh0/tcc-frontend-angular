@@ -6,61 +6,68 @@
             <option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
         </select>
 
-        [inserir aqui]
+        <!-- Componente da Tabela -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome do Bem</th>
+                    <th>Ver</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bem of bens">
+                    <td>{{ bem.nome }}</td>
+                    <td><button (click)="verBem(bem)">Ver</button></td>
+                    <td><button (click)="editarBem(bem)">Editar</button></td>
+                    <td><button (click)="excluirBem(bem)">Excluir</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button (click)="adicionarBem()">Adicionar Bem</button>
 
-        <form>
-            <br><br>
-            
-            <label for="tipo_bem">Tipo de Bem:</label>
-            <select name="tipo_bem" id="tipo_bem">
-                <option value="material_permanente">Material Permanente</option>
-                <option value="material_consumo">Material de Consumo</option>
-                <option value="bem_mov_permanente">Bem Móvel Permanente</option>
-                <option value="bem_mov">Bem Móvel</option>
-                <option value="bem_mov_cultural">Bem Móvel Cultural</option>
-            </select>
-            <br><br>
 
-            <label for="nome_bem">Nome do Bem:</label>
-            <input type="text" id="nome_bem" name="nome_bem"><br><br>
+        <!-- Componente do Popup com Formulário -->
+        <div *ngIf="mostrarPopup">
+            <div>
+                <label>Nome do Bem:</label>
+                <input type="text" [(ngModel)]="novoBem.nome">
+            </div>
+            <div>
+                <label>Campo 1:</label>
+                <input type="text" [(ngModel)]="novoBem.campo1">
+            </div>
+            <div>
+                <label>Campo 2:</label>
+                <input type="text" [(ngModel)]="novoBem.campo2">
+            </div>
+            <button (click)="adicionarNovoBem()">Adicionar</button>
+            <button (click)="fecharPopup()">Voltar</button>
+        </div>
 
-            <label for="desc_bem">Descrição:</label>
-            <textarea id="desc_bem" name="desc_bem"></textarea><br><br>
+        <!-- Tabela de Arquivos -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome do Arquivo</th>
+                    <th>Tamanho</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let arquivo of arquivos">
+                    <td>{{ arquivo.nome }}</td>
+                    <td>{{ arquivo.tamanho }}</td>
+                    <td>
+                        <button (click)="removerArquivo(arquivo)">Excluir</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <button (click)="openFileDialog()">Adicionar Arquivo</button>
+        </div>
 
-            <label for="qtd_bem">Quantidade:</label>
-            <input type="number" id="qtd_bem" name="qtd_bem"><br><br>
-
-            <label for="valor_unit">Valor Unitário:</label>
-            <input type="text" id="valor_unit" name="valor_unit"><br><br>
-
-            <label for="valor_total">Valor Total:</label>
-            <input type="text" id="valor_total" name="valor_total"><br><br>
-
-            <label for="data_aquisicao">Data de Aquisição:</label>
-            <input type="date" id="data_aquisicao" name="data_aquisicao"><br><br>
-
-            <label for="fornecedor">Fornecedor:</label>
-            <input type="text" id="fornecedor" name="fornecedor"><br><br>
-
-            <label for="num_nf">Número da Nota Fiscal:</label>
-            <input type="text" id="num_nf" name="num_nf"><br><br>
-
-            <label for="orgao">Órgão:</label>
-            <input type="text" id="orgao" name="orgao"><br><br>
-
-            <label for="entidade">Entidade:</label>
-            <input type="text" id="entidade" name="entidade"><br><br>
-
-            <label for="setor">Setor:</label>
-            <input type="text" id="setor" name="setor"><br><br>
-
-            <label for="responsavel">Responsável:</label>
-            <input type="text" id="responsavel" name="responsavel"><br><br>
-
-            <label for="observacoes">Observações:</label>
-            <textarea id="observacoes" name="observacoes"></textarea><br><br>
-
-            <input type="submit" value="Salvar">
-        </form>
     </div>
 </app-dashboard-layout>
