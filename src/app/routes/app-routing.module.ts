@@ -9,7 +9,7 @@ import { LoginComponent } from '../pages/login/login.component';
 import { RegisterComponent } from '../pages/register/register.component';
 import { Page404Component } from '../pages/page404/page404.component';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
-import { IngressoBensMoveisComponent } from '../pages/bens-moveis/ingresso-bens-moveis/ingresso-bens-moveis.component';
+import { IngressoComponent } from '../pages/bens-moveis/ingresso/ingresso.component';
 import { IncorporacaoComponent } from '../pages/bens-moveis/incorporacao/incorporacao.component';
 import { InventarioComponent } from '../pages/bens-moveis/inventario/inventario.component';
 import { DesfazimentoBaixaComponent } from '../pages/bens-moveis/desfazimento-baixa/desfazimento-baixa.component';
@@ -51,7 +51,7 @@ const routes: Routes = [
 
   {
     path: 'bens-moveis/ingresso',
-    component: IngressoBensMoveisComponent,
+    component: IngressoComponent,
   },
   {
     path: 'bens-moveis/incorporacao',

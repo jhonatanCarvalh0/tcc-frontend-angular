@@ -2,83 +2,88 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
 
 * {
-    outline: none;
-    box-sizing: border-box;
+  outline: none;
+  box-sizing: border-box;
 }
 
 html {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 :root {
-    --body-font: "Inter", sans-serif;
-    --theme-bg: #1f1d2b;
-    --body-color: #808191;
-    --button-bg: #353340;
-    --border-color: rgb(128 129 145 / 24%);
-    --video-bg: #252936;
-    --delay: 0s;
+  --body-font: "Inter", sans-serif;
+  --theme-bg: #1f1d2b;
+  --body-color: #808191;
+  --button-bg: #353340;
+  --border-color: rgb(128 129 145 / 24%);
+  --video-bg: #252936;
+  --delay: 0s;
 }
 
 .dashboard-body {
-    font-family: var(--body-font);
-    color: var(--body-color);
-    background-image: url("https://images.unsplash.com/photo-1445251836269-d158eaa028a6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1951&q=80");
-    background-image: url(https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-blend-mode: color-dodge;
-    background-color: rgba(18, 21, 39, 0.86);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 1em 2em;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
+  font-family: var(--body-font);
+  color: var(--body-color);
+  background-image: url("https://images.unsplash.com/photo-1445251836269-d158eaa028a6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1951&q=80");
+  background-image: url(https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80);
+  background-image: url(https://img.freepik.com/free-photo/iron-steel-material-storage_1127-3263.jpg?w=1380&t=st=1680743507~exp=1680744107~hmac=9f85b9904d11ffc4e230deb9e7452921e9abbe2215f4480559dc3321f18e76d6);
+  
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: color-dodge;
+  //background-color: rgba(18, 21, 39, 0.86);
+  background-color: rgba(18, 21, 39, 0.86);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1em 2em;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 
-    &:before {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(163deg,
-                rgba(31, 29, 43, 1) 21%,
-                rgba(31, 29, 43, 0.3113620448179272) 64%);
-        opacity: 0.4;
-        content: "";
-    }
+  &:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      163deg,
+      rgba(31, 29, 43, 1) 21%,
+      rgba(31, 29, 43, 0.3113620448179272) 64%
+    );
+    opacity: 0.4;
+    content: "";
+  }
 }
 
 // div
 .container {
-    background-color: #1f1d2b;
-    max-width: 1240px;
-    max-height: 900px;
-    /*max-width: 100%;
+  background-color: #1f1d2b;
+  max-width: 1240px;
+  max-height: 900px;
+  /*max-width: 100%;
     max-height: 100%;*/
-    
-    height: 95vh;
-    display: flex;
-    overflow: hidden;
-    width: 100%;
-    border-radius: 20px;
-    font-size: 15px;
-    font-weight: 500px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-    position: relative;
+
+  height: 95vh;
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 500px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  position: relative;
 }
 
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }

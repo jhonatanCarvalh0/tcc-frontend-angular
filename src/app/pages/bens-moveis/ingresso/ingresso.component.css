@@ -1,0 +1,45 @@
+.selecionador-de-ingresso {
+  color: aliceblue;
+}
+.ingresso {
+  color: aliceblue;
+  margin-top: 20px;
+  border: 0px solid #ccc;
+  padding: 20px;
+  background-color: none;
+  overflow: auto;
+}
+
+.ingresso h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.ingresso label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.ingresso input,
+.ingresso select {
+  width: 100%;
+  padding: 8px;
+  border: 0px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+.ingresso button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.ingresso button[type="submit"]:hover {
+  background-color: #3e8e41;
+}

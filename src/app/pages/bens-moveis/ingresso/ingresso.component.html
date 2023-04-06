@@ -1,0 +1,231 @@
+<app-dashboard-layout>
+    <div class="selecionador-de-ingresso">
+        <h2>Ingresso de Bens Móveis</h2>
+
+        <label for="option">Selecione o tipo de ingresso:</label>
+        <select id="option" name="option" [(ngModel)]="selectedOption">
+            <option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+        </select>
+    </div>
+
+    <!-- Formulário de Compra -->
+    <div class="ingresso" *ngIf="selectedOption === 'compra'">
+        <form [formGroup]="formularioCompra" (ngSubmit)="onSubmitCompra()">
+            <h3>Compra</h3>
+            <div>
+                <label for="numeroProcesso">Número do Processo:</label>
+                <input type="text" id="numeroProcesso" formControlName="numeroProcesso">
+            </div>
+            <div>
+                <label for="descricaoCompra">Descrição do Bem Móvel:</label>
+                <input type="text" id="descricaoCompra" formControlName="descricao">
+            </div>
+            <div>
+                <label for="valor">Valor:</label>
+                <input type="number" id="valor" formControlName="valor">
+            </div>
+            <div>
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="quantidade" formControlName="quantidade">
+            </div>
+            <div>
+                <label for="unidadeMedida">Unidade de Medida:</label>
+                <input type="text" id="unidadeMedida" formControlName="unidadeMedida">
+            </div>
+            <div formGroupName="fornecedor">
+                <h4>Fornecedor</h4>
+                <div>
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" formControlName="nome">
+                </div>
+                <div>
+                    <label for="cpfCnpj">CPF/CNPJ:</label>
+                    <input type="text" id="cpfCnpj" formControlName="cpfCnpj">
+                </div>
+                <div>
+                    <label for="endereco">Endereço:</label>
+                    <input type="text" id="endereco" formControlName="endereco">
+                </div>
+                <div>
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" id="telefone" formControlName="telefone">
+                </div>
+            </div>
+            <div>
+                <label for="dataCompra">Data da Compra:</label>
+                <input type="date" id="dataCompra" formControlName="dataCompra">
+            </div>
+            <div>
+                <label for="numNotaFiscal">Número da Nota Fiscal:</label>
+                <input type="text" id="numNotaFiscal" formControlName="numNotaFiscal">
+            </div>
+            <div>
+                <label for="dataNotaFiscal">Data da Nota Fiscal:</label>
+                <input type="date" id="dataNotaFiscal" formControlName="dataNotaFiscal">
+            </div>
+            <div>
+                <label for="comprovantePagamento">Comprovante de Pagamento:</label>
+                <input type="text" id="comprovantePagamento" formControlName="comprovantePagamento">
+            </div>
+            <div>
+                <label for="formaPagamento">Forma de Pagamento:</label>
+                <input type="text" id="formaPagamento" formControlName="formaPagamento">
+            </div>
+            <div>
+                <label for="dataPagamento">Data do Pagamento:</label>
+                <input type="date" id="dataPagamento" formControlName="dataPagamento">
+            </div>
+            <div>
+                <label for="numeroEmpenho">Numero de Empenho:</label>
+                <input type="text" id="numeroEmpenho" formControlName="numeroEmpenho">
+            </div>
+            <div>
+                <label for="dataEmpenho">Data do Empenho:</label>
+                <input type="date" id="dataEmpenho" formControlName="dataEmpenho">
+            </div>
+            <div>
+                <label for="observacoes">Observações:</label>
+                <input type="text" id="observacoes" formControlName="observacoes">
+            </div>
+        </form>
+    </div>
+
+    <!-- Formulário de Convenio -->
+    <div class="ingresso" *ngIf="selectedOption === 'convenio'">
+        <form [formGroup]="formularioConvenio" (ngSubmit)="onSubmitConvenio()"></form>
+    </div>
+
+    <!-- Formulário de Doação -->
+    <div class="ingresso" *ngIf="selectedOption === 'doacao'">
+        <form [formGroup]="formularioDoacao" (ngSubmit)="onSubmitDoacao()">
+            <h3>Doação</h3>
+            <div>
+                <label for="tipoDoacao">Tipo de Doação:</label>
+                <select id="tipoDoacao" formControlName="tipoDoacao">
+                    <option value="">Selecione uma opção</option>
+                    <option value="oriundo-de-terceiros">Oriundo de terceiros a Órgãos da Administração Direta e
+                        Entidades da
+                        Administração Indireta Estadual</option>
+                    <option value="entre-entidades">Entre Entidades da Administração Indireta Estadual</option>
+                    <option value="entre-orgaos">Entre Órgãos da Administração Direta e Entidades da Administração
+                        Indireta
+                        Estadual</option>
+                </select>
+            </div>
+            <div>
+                <label for="descricaoDoacao">Descrição do Bem Móvel:</label>
+                <input type="text" id="descricaoDoacao" formControlName="descricao">
+            </div>
+            <div>
+                <label for="valorAquisicaoDoacao">Valor de Aquisição:</label>
+                <input type="number" id="valorAquisicaoDoacao" formControlName="valorAquisicao">
+            </div>
+            <div>
+                <label for="dataAquisicaoDoacao">Data de Aquisição:</label>
+                <input type="date" id="dataAquisicaoDoacao" formControlName="dataAquisicao">
+            </div>
+            <div>
+                <label for="termoDoacao">Termo de Doação:</label>
+                <input type="file" id="termoDoacao" formControlName="termoDoacao">
+            </div>
+            <div>
+                <label for="nomeDoador">Nome do Doador:</label>
+                <input type="text" id="nomeDoador" formControlName="nomeDoador">
+            </div>
+            <div>
+                <label for="cpfCnpjDoador">CPF/CNPJ do Doador:</label>
+                <input type="text" id="cpfCnpjDoador" formControlName="cpfCnpjDoador">
+            </div>
+            <div>
+                <label for="enderecoDoador">Endereço do Doador:</label>
+                <input type="text" id="enderecoDoador" formControlName="enderecoDoador">
+            </div>
+            <div>
+                <label for="telefoneDoador">Telefone do Doador:</label>
+                <input type="text" id="telefoneDoador" formControlName="telefoneDoador">
+            </div>
+            <div>
+                <label for="projetoPrograma">Projeto ou Programa:</label>
+                <input type="text" id="projetoPrograma" formControlName="projetoPrograma">
+            </div>
+            <div>
+                <label for="estadoAtual">Estado Atual:</label>
+                <input type="text" id="estadoAtual" formControlName="estadoAtual">
+            </div>
+            <div>
+                <label for="formaEntrega">Forma de entrga:</label>
+                <input type="text" id="formaEntrega" formControlName="formaEntrega">
+            </div>
+            <div>
+                <label for="comprovacaoPropriedade">Comprovação de propriedade:</label>
+                <input type="text" id="comprovacaoPropriedade" formControlName="comprovacaoPropriedade">
+            </div>
+            <button type="submit">Registrar Bem</button>
+        </form>
+    </div>
+
+    <!-- Formulário de Adjusdicação -->
+    <div class="ingresso" *ngIf="selectedOption === 'adjudicacao'">
+        <form [formGroup]="formularioAdjudicacao" (ngSubmit)="onSubmitAdjudicacao()">
+            <button type="submit">Registrar Bem</button>
+        </form>
+    </div>
+
+    <!-- Formulário de Dação em Pagamento -->
+    <div class="ingresso" *ngIf="selectedOption === 'dacaoPagamento'">
+        <form [formGroup]="formularioDacaoPagamento" (ngSubmit)="onSubmitDacaoPagamento()">
+            <button type="submit">Registrar Bem</button>
+        </form>
+    </div>
+
+    <!-- Formulário de Produção Própria e Reaproveitamento -->
+    <div class="ingresso" *ngIf="selectedOption === 'producaoPropriaReaproveitamento'">
+        <form [formGroup]="formularioProducaoPropriaReaproveitamento"
+            (ngSubmit)="onSubmitProducaoPropriaReaproveitamento()">
+            <button type="submit">Registrar Bem</button>
+        </form>
+    </div>
+
+    <!-- Formulário de Apreensão -->
+    <div class="ingresso" *ngIf="selectedOption === 'apreensao'">
+        <form [formGroup]="formularioApreensao" (ngSubmit)="onSubmitApreensao()">
+            <button type="submit">Registrar Bem</button>
+        </form>
+    </div>
+
+    <!-- Formulário de Procriação -->
+    <div class="ingresso" *ngIf="selectedOption === 'procriacao'">
+        <form [formGroup]="formularioProcriacao" (ngSubmit)="onSubmitProcriacao()">
+            <button type="submit">Registrar Bem</button>
+        </form>
+    </div>
+
+    <!-- Formulário de Permuta -->
+    <div class="ingresso" *ngIf="selectedOption === 'permuta'">
+        <form [formGroup]="formularioPermuta" (ngSubmit)="onSubmitPermuta()">
+            <button type="submit">Registrar Bem</button>
+        </form>
+    </div>
+
+    <!-- Formulário de Transferência -->
+    <div class="ingresso" *ngIf="selectedOption === 'transferencia'">
+        <form [formGroup]="formularioTransferencia" (ngSubmit)="onSubmitTransferencia()">
+            <button type="submit">Registrar Bem</button>
+        </form>
+    </div>
+
+    <!-- Formulário de Achados -->
+    <div class="ingresso" *ngIf="selectedOption === 'achados'">
+        <form [formGroup]="formularioAchados" (ngSubmit)="onSubmitAchados()">
+            <button type="submit">Registrar Bem</button>
+        </form>
+    </div>
+
+    <!-- Formulário de Restituição -->
+    <div class="ingresso" *ngIf="selectedOption === 'restituicao'">
+        <form [formGroup]="formularioRestituicao" (ngSubmit)="onSubmitRestituicao()">
+            <button type="submit">Registrar Bem</button>
+        </form>
+    </div>
+
+</app-dashboard-layout>
