@@ -11,25 +11,23 @@
             <thead>
                 <tr>
                     <th>Nome do Bem</th>
-                    <th>Ver</th>
-                    <th>Editar</th>
-                    <th>Excluir</th>
+                    <th colspan="3">Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let bem of bens">
                     <td>{{ bem.nome }}</td>
-                    <td><button (click)="verBem(bem)">Ver</button></td>
-                    <td><button (click)="editarBem(bem)">Editar</button></td>
-                    <td><button (click)="excluirBem(bem)">Excluir</button></td>
+                    <td><button class="actionButton" (click)="verBem(bem)">Ver</button></td>
+                    <td><button class="actionButton" (click)="editarBem(bem)">Editar</button></td>
+                    <td><button class="actionButton" (click)="excluirBem(bem)">Excluir</button></td>
                 </tr>
             </tbody>
         </table>
-        <button (click)="adicionarBem()">Adicionar Bem</button>
+        <button class="tableButton"(click)="adicionarBem()">Adicionar Bem</button>
 
 
         <!-- Componente do Popup com Formulário -->
-        <div *ngIf="mostrarPopup">
+        <div class='popup' *ngIf="mostrarPopup">
             <div>
                 <label>Nome do Bem:</label>
                 <input type="text" [(ngModel)]="novoBem.nome">
@@ -42,8 +40,8 @@
                 <label>Campo 2:</label>
                 <input type="text" [(ngModel)]="novoBem.campo2">
             </div>
-            <button (click)="adicionarNovoBem()">Adicionar</button>
-            <button (click)="fecharPopup()">Voltar</button>
+            <button class="tableButton" (click)="adicionarNovoBem()">Adicionar</button>
+            <button class="tableButton" (click)="fecharPopup()">Voltar</button>
         </div>
 
         <!-- Tabela de Arquivos -->
@@ -52,7 +50,7 @@
                 <tr>
                     <th>Nome do Arquivo</th>
                     <th>Tamanho</th>
-                    <th></th>
+                    <th>Ação</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,7 +58,7 @@
                     <td>{{ arquivo.nome }}</td>
                     <td>{{ arquivo.tamanho }}</td>
                     <td>
-                        <button (click)="removerArquivo(arquivo)">Excluir</button>
+                        <button class="actionButton" (click)="removerArquivo(arquivo)">Excluir</button>
                     </td>
                 </tr>
             </tbody>
@@ -68,6 +66,9 @@
         <div>
             <button (click)="openFileDialog()">Adicionar Arquivo</button>
         </div>
+        <button class="submitButton" (click)="onSubmit()"> Adicionar/Ingressar Bens
+            Móveis
+        </button>
 
     </div>
 </app-dashboard-layout>

@@ -119,4 +119,10 @@ export class IngressoComponent {
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.arquivos, event.previousIndex, event.currentIndex);
   }
+  onSubmit() {
+    console.log(
+      'Essa função irá enviar os bens moveis da lista, os documentos relacionados, o tipo de ingresso de cada bem e todos interligados'
+    );
+    
+  }
 }

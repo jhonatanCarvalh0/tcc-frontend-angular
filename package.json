@@ -25,6 +25,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.2.1",
     "@fortawesome/free-regular-svg-icons": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "bootstrap": "^5.2.3",
     "jquery": "^3.6.4",
     "ngx-file-drop": "^15.0.0",
     "primeicons": "^6.0.1",
