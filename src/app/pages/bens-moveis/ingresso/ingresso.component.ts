@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
 
@@ -36,32 +36,34 @@ export class IngressoComponent {
   ];
 
   novoBem = { nome: '', campo1: '', campo2: '' };
-  mostrarPopup = false;
 
-  adicionarBem() {
-    this.novoBem = { nome: '', campo1: '', campo2: '' };
-    this.mostrarPopup = true;
-  }
-
+  
   verBem(bem: any) {
     console.log('Ver bem:', bem);
   }
-
+  
   editarBem(bem: any) {
     console.log('Editar bem:', bem);
   }
-
+  
   excluirBem(bem: any) {
     console.log('Excluir bem:', bem);
   }
-
+  
+  @ViewChild('mostrarDialog') mostrarDialog: any;
+  adicionarBem() {
+    this.novoBem = { nome: '', campo1: '', campo2: '' };
+    this.mostrarDialog = true;
+  }
+  
   adicionarNovoBem() {
     this.bens.push(this.novoBem);
-    this.fecharPopup();
+    this.mostrarDialog = false; // atualiza a variável de classe
+    this.novoBem = { nome: '', campo1: '', campo2: '' }; // limpa o formulário
   }
 
-  fecharPopup() {
-    this.mostrarPopup = false;
+  fecharDialog() {
+    this.mostrarDialog = false;
   }
 
   //table for files
@@ -123,8 +125,5 @@ export class IngressoComponent {
     console.log(
       'Essa função irá enviar os bens moveis da lista, os documentos relacionados, o tipo de ingresso de cada bem e todos interligados'
     );
-    
   }
-
-  
 }

@@ -1,3 +1,17 @@
+dialog {
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+  padding: 3rem;
+  overflow: auto;
+
+  width: 996px;
+  margin-right: 350px;
+  height: 671px;
+  background: #1f1d2b;
+  border: none;
+  border-radius: 1rem;
+}
+
 .selecionador-de-ingresso {
   font-family: Arial, sans-serif;
   color: #ffffff;
@@ -71,6 +85,16 @@ button {
   cursor: pointer;
   margin-right: 10px;
   transition: background 0.4s;
+}
+
+.dialogAddButton, .dialogAddButton:hover {
+  background-color: greenyellow;
+  color: #1f1d2b;
+}
+
+.dialogCloseButton, .dialogCloseButton:hover {
+  background-color: red;
+  color: white;
 }
 
 .tableButton {

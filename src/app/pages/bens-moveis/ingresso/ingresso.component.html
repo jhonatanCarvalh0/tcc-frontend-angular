@@ -23,12 +23,14 @@
                 </tr>
             </tbody>
         </table>
-        <button class="tableButton" (click)="adicionarBem()">Adicionar Bem</button>
+        <button class="tableButton" (click)="mostrarDialog.showModal()">Adicionar Bem</button>
+        <!-- Botão abre o dialog abaixo -->
 
-        <!-- Botão abre o popup abaixo -->
 
-        <!-- Componente do Popup com Formulário -->
-        <div *ngIf="mostrarPopup">
+
+        <!-- Componente do Dialog com Formulário -->
+        <dialog #mostrarDialog>
+            <h2> Adicionar Bem Móvel</h2>
             <div>
                 <label>Nome do Bem:</label>
                 <input type="text" [(ngModel)]="novoBem.nome">
@@ -41,9 +43,9 @@
                 <label>Campo 2:</label>
                 <input type="text" [(ngModel)]="novoBem.campo2">
             </div>
-            <button class="tableButton" (click)="adicionarNovoBem()">Adicionar</button>
-            <button class="tableButton" (click)="fecharPopup()">Voltar</button>
-        </div>
+            <button class="dialogAddButton" (click)="adicionarNovoBem(); mostrarDialog.close()">Adicionar</button>
+            <button class="dialogCloseButton" (click)="mostrarDialog.close()">Voltar</button>
+        </dialog>
 
         <!-- Tabela de Arquivos -->
         <table>
