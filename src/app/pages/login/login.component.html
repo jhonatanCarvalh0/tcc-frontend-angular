@@ -19,6 +19,9 @@
             </div>
         </span>
         </a>
+        <div class="error-msg" *ngIf="showError">
+            Email ou senha incorreta! Tente novamente!
+        </div>
         <!-- email field -->
         <div class="wrap-input">
             <input [ngClass]="email !== '' ? 'has-val input' : 'input'" [(ngModel)]="email" type="email" name="email" />
@@ -33,7 +36,7 @@
         </div>
         <!-- login form button -->
         <div class="container-login-form-btn">
-            <button class="login-form-btn" routerLink="/dashboard">Login</button>
+            <button class="login-form-btn" (click)="login()">Login</button>
         </div>
         <!-- bottom text for register -->
         <div class="text-for-register">

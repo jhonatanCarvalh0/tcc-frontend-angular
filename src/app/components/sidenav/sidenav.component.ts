@@ -13,6 +13,13 @@ export class SidenavComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
+    const quitMenuItem: MenuItem = {
+      label: 'Quit',
+      icon: 'pi pi-fw pi-power-off',
+      command: () => {
+        this.router.navigate(['/login']);
+      }
+    };
     this.items = [
       {
         label: 'Dashboard',
@@ -103,7 +110,19 @@ export class SidenavComponent implements OnInit {
       {
         label: 'Quit',
         icon: 'pi pi-fw pi-power-off',
+        command: () => {
+          localStorage.removeItem('token'); // Remove login status from localStorage
+          this.router.navigate(['/login']); // Navigate to login page
+        },
       },
     ];
+  }
+
+  logout() {
+    // Limpar o estado da sessão aqui
+    // Por exemplo, você pode remover o token de autenticação do armazenamento local
+
+    // Redirecionar para a página de login
+    this.router.navigate(['/login']);
   }
 }

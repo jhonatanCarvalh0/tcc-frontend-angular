@@ -20,6 +20,7 @@ import { ReducaoValorRecuperavelComponent } from '../pages/bens-moveis/procedime
 import { DepreciacaoComponent } from '../pages/bens-moveis/procedimentos-contabeis/depreciacao/depreciacao.component';
 import { AmortizacaoComponent } from '../pages/bens-moveis/procedimentos-contabeis/amortizacao/amortizacao.component';
 import { ExaustaoComponent } from '../pages/bens-moveis/procedimentos-contabeis/exaustao/exaustao.component';
+import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
   /**/
@@ -47,6 +48,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [AuthGuard],
   },
 
   {

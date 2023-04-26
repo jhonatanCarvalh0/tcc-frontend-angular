@@ -23,6 +23,13 @@
   fill: url(#my-cool-gradient) #b721ff;
 }
 
+.error-msg {
+  color: red;
+  font-size: 20px;
+  margin-top: 5px;
+  text-align: center;
+}
+
 .wrap-input {
   width: 100%;
   position: relative;
