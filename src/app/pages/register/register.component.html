@@ -19,6 +19,9 @@
                 </div>
             </span>
         </a>
+        <div class="error-msg" *ngIf="showError">
+            Usuário ja cadastrado! Tente outro email ou faça login!
+        </div>
         <!-- name field -->
         <div class="wrap-input">
             <input [ngClass]="name !== '' ? 'has-val input' : 'input'" [(ngModel)]="name" type="name" name="name" />
@@ -35,11 +38,11 @@
                 name="password" />
             <span class="focus-input" [attr.data-placeholder]="'Password'"></span>
         </div>
-        <!-- login form button -->
+        <!-- register form button -->
         <div class="container-login-form-btn">
-            <button class="login-form-btn" routerLink="/login">Register</button>
+            <button class="login-form-btn" (click)="register()">Register</button>
         </div>
-        <!-- bottom text for register -->
+        <!-- bottom text for login -->
         <div class="text-for-register">
             <span class="text-question">Já Possui conta?</span>
             <a class="text-link-register" routerLink="/login">
