@@ -22,6 +22,9 @@
   /* gradient and fallback color */
   fill: url(#my-cool-gradient) #b721ff;
 }
+.icon2 {
+  width: 150px;
+}
 
 .error-msg {
   color: red;
