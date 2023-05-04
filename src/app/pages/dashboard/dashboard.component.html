@@ -5,7 +5,32 @@
             <div class="main-container">
                 <!-- TITLE -->
                 <div class="main-header anim" style="--delay: 0s">Discover</div>
-                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome do Bem</th>
+                            <th>Descrição</th>
+                            <th>Valor</th>
+                            <th>Arquivos Anexados</th>
+                            <th>Forma de Ingresso</th>
+                            <th>Cod. de Ingresso</th>
+                            <th colspan="3">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let bem of bensMoveis">
+                            <td>{{ bem.nome }}</td>
+                            <td>{{ bem.descricao }}</td>
+                            <td>{{ bem.valor }}</td>
+                            <td>{{ bem.arquivosAnexados.length }}</td>
+                            <td>{{ bem.tipoIngresso }}</td>
+                            <td>{{ bem.ingressoId }}</td>
+                            <td><button class="actionButton" (click)="showConsoleLog('ver')">Ver</button></td>
+                            <td><button class="actionButton" (click)="showConsoleLog('editar')">Editar</button></td>
+                            <td><button class="actionButton" (click)="showConsoleLog('excluir')">Excluir</button></td>
+                        </tr>
+                    </tbody>
+                </table>
                 <!-- SUB-TITLE -->
                 <div class="small-header anim" style="--delay: .3s">Most Watched</div>
 

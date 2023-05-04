@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
+import { BensMoveisService } from '../bens-moveis/bens-moveis.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,22 +7,25 @@ import * as $ from 'jquery';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+  bensMoveis = [
+    {
+      nome: 'nome',
+      descricao: 'descricao',
+      valor: 'valor',
+      arquivosAnexados: [{ arquivo1: 'string' }, { arquivo2: 'string' }],
+      tipoIngresso: 'tipoIngresso',
+      ingressoId: 'ingressoId',
+    },
+  ];
 
-  constructor() { }
+  constructor(private bensMoveisService: BensMoveisService) {}
 
   ngOnInit(): void {
-    
-    $(".logo, .logo-expand, .discover").on("click", function (e) {
-      $(".main-container").removeClass("show");
-      $(".main-container").scrollTop(0);
-    });
-
-    $(".trending, .video").on("click", function (e) {
-      $(".main-container").addClass("show");
-      $(".main-container").scrollTop(0);
-      $(".sidebar-link").removeClass("is-active");
-      $(".trending").addClass("is-active");
-    });
+    console.log('ngOinit');
+  }
+  showConsoleLog(action: string): void {
+    console.log(`Ação "${action}" selecionada`);
+    alert(`Ação "${action}" selecionada`);
   }
 
 }

@@ -2,6 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
 
+//services
+import { IngressoService } from './ingresso.service';
+
+//models
+import { Ingresso, BemMovel } from '../../../models/ingresso'; // importe os modelos de dados necessários
+
 @Component({
   selector: 'app-ingresso',
   templateUrl: './ingresso.component.html',
@@ -30,41 +36,88 @@ export class IngressoComponent {
 
   // table for bens-moveis
   bens = [
-    { nome: 'Bem 1', campo1: 'Valor 1', campo2: 'Valor 2' },
-    { nome: 'Bem 2', campo1: 'Valor 3', campo2: 'Valor 4' },
-    { nome: 'Bem 3', campo1: 'Valor 5', campo2: 'Valor 6' },
+    {
+      nome: 'cadeira',
+      descricao: 'cadeira de madeira',
+      valor: 50.0,
+      arquivosAnexados: ['foto_cadeira1.jpg', 'foto_cadeira2.jpg'],
+    },
   ];
 
-  novoBem = { nome: '', campo1: '', campo2: '' };
+  //novoBem = { nome: '', descricao: '', valor: '', arquivosAnexados: [] };
 
-  
-  verBem(bem: any) {
-    console.log('Ver bem:', bem);
+  novoIngresso: Ingresso = {
+    tipoIngresso: '',
+    bensMoveis: [],
+  };
+
+  novoBemMovel: BemMovel = {
+    nome: '',
+    descricao: '',
+    valor: 0,
+    arquivosAnexados: [],
+  };
+
+  constructor(private ingressoService: IngressoService) {}
+
+  alert() {
+    return console.log('funcionando');
   }
-  
-  editarBem(bem: any) {
-    console.log('Editar bem:', bem);
+
+  tableActions(action: string, bem: BemMovel) {
+    if (action === 'show') {
+      console.log('show');
+    }
+
+    if (action === 'edit') {
+      console.log('edit');
+    }
+
+    if (action === 'remove') {
+      const index = this.bens.indexOf(bem);
+      if (index > -1) {
+        this.bens.splice(index, 1);
+      }
+    }
   }
-  
-  excluirBem(bem: any) {
-    console.log('Excluir bem:', bem);
-  }
-  
+
   @ViewChild('mostrarDialog') mostrarDialog: any;
-  adicionarBem() {
-    this.novoBem = { nome: '', campo1: '', campo2: '' };
-    this.mostrarDialog = true;
-  }
-  
-  adicionarNovoBem() {
-    this.bens.push(this.novoBem);
+
+  adicionarNovoBemALista() {
+    /*{this.bens.push(this.novoBemMovel);
     this.mostrarDialog = false; // atualiza a variável de classe
-    this.novoBem = { nome: '', campo1: '', campo2: '' }; // limpa o formulário
+    this.novoBemMovel = {
+      nome: '',
+      descricao: '',
+      valor: 0,
+      arquivosAnexados: [],
+      }; // limpa o formulário
+    }*/
+    this.novoIngresso.bensMoveis.push(this.novoBemMovel);
+    this.novoBemMovel = {
+      nome: '',
+      descricao: '',
+      valor: 0,
+      arquivosAnexados: [],
+    };
   }
 
-  fecharDialog() {
-    this.mostrarDialog = false;
+  onSubmit() {
+    this.ingressoService.criarIngresso(this.novoIngresso).subscribe(
+      (ingressoCriado) => {
+        console.log('Ingresso criado:', ingressoCriado);
+        // faça algo com o ingresso criado, se necessário
+      },
+      (erro) => {
+        console.error('Erro ao criar ingresso:', erro);
+        // trate o erro, se necessário
+      }
+    );
   }
+
+  /*fecharDialog() {
+    this.mostrarDialog = false;
+  }*/
 
   //table for files
   arquivos: { nome: string; tamanho: string }[] = [];
@@ -76,29 +129,47 @@ export class IngressoComponent {
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
   ];
 
-  openFileDialog() {
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.multiple = true;
-    fileInput.accept = this.allowedTypes.join(',');
+  handleFileTable(action: string, arquivo?: { nome: string; tamanho: string }) {
+    const openFileDialog = () => {
+      const fileInput = document.createElement('input');
+      fileInput.type = 'file';
+      fileInput.multiple = true;
+      fileInput.accept = this.allowedTypes.join(',');
 
-    fileInput.addEventListener('change', (event) => {
-      const inputElement = event.target as HTMLInputElement; // especifica o tipo de event.target como HTMLInputElement
-      if (inputElement && inputElement.files) {
-        // verifica se inputElement e inputElement.files não são null
-        const files = inputElement.files;
-        for (let i = 0; i < files.length; i++) {
-          const file = files[i];
-          const tamanho = (file.size / 1024 / 1024).toFixed(2) + ' MB';
-          this.arquivos.push({ nome: file.name, tamanho: tamanho });
+      fileInput.addEventListener('change', (event) => {
+        const inputElement = event.target as HTMLInputElement; // especifica o tipo de event.target como HTMLInputElement
+        if (inputElement && inputElement.files) {
+          // verifica se inputElement e inputElement.files não são null
+          const files = inputElement.files;
+          for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const tamanho = (file.size / 1024 / 1024).toFixed(2) + ' MB';
+            this.arquivos.push({ nome: file.name, tamanho: tamanho });
+          }
         }
-      }
-    });
+      });
 
-    fileInput.click();
+      fileInput.click();
+    };
+    const removerArquivo = (arquivo: { nome: string; tamanho: string }) => {
+      if (arquivo === undefined) {
+        return;
+      }
+
+      const index = this.arquivos.indexOf(arquivo);
+      if (index > -1) {
+        this.arquivos.splice(index, 1);
+      }
+    };
+    if (action === 'add') {
+      openFileDialog();
+    }
+    if (action === 'remove') {
+      removerArquivo(arquivo!);
+    }
   }
 
-  fileDropped(event: CdkDragDrop<NgxFileDropEntry[]>) {
+  /*fileDropped(event: CdkDragDrop<NgxFileDropEntry[]>) {
     const dropped = event.item;
     if (dropped instanceof FileSystemFileEntry) {
       const fileEntry = dropped as FileSystemFileEntry;
@@ -109,21 +180,9 @@ export class IngressoComponent {
         }
       });
     }
-  }
+  }*/
 
-  removerArquivo(arquivo: { nome: string; tamanho: string }) {
-    const index = this.arquivos.indexOf(arquivo);
-    if (index > -1) {
-      this.arquivos.splice(index, 1);
-    }
-  }
-
-  drop(event: CdkDragDrop<string[]>) {
+  /*drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.arquivos, event.previousIndex, event.currentIndex);
-  }
-  onSubmit() {
-    console.log(
-      'Essa função irá enviar os bens moveis da lista, os documentos relacionados, o tipo de ingresso de cada bem e todos interligados'
-    );
-  }
+  }*/
 }

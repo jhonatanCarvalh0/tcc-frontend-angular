@@ -1,4 +1,5 @@
-.main-container, dialog{
+.main-container,
+dialog {
   display: flex;
   flex-direction: column;
   padding: 0 30px 30px;
@@ -167,4 +168,23 @@
   &.video-seperate {
     background-color: var(--body-color);
   }
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+
+th {
+  background-color: #ff7b00;
+  font-weight: bold;
 }

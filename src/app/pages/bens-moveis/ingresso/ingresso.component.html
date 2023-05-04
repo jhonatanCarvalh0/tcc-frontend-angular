@@ -15,11 +15,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let bem of bens">
+                <tr *ngFor="let bem of novoIngresso.bensMoveis">
                     <td>{{ bem.nome }}</td>
-                    <td><button class="actionButton" (click)="verBem(bem)">Ver</button></td>
-                    <td><button class="actionButton" (click)="editarBem(bem)">Editar</button></td>
-                    <td><button class="actionButton" (click)="excluirBem(bem)">Excluir</button></td>
+                    <td><button class="actionButton" (click)="alert()">Ver</button></td>
+                    <td><button class="actionButton" (click)="alert()">Editar</button></td>
+                    <td><button class="actionButton" (click)="tableActions('remove', bem)">Excluir</button></td>
                 </tr>
             </tbody>
         </table>
@@ -33,42 +33,43 @@
             <h2> Adicionar Bem Móvel</h2>
             <div>
                 <label>Nome do Bem:</label>
-                <input type="text" [(ngModel)]="novoBem.nome">
+                <input type="text" [(ngModel)]="novoBemMovel.nome">
             </div>
             <div>
-                <label>Campo 1:</label>
-                <input type="text" [(ngModel)]="novoBem.campo1">
+                <label>Descrição:</label>
+                <input type="text" [(ngModel)]="novoBemMovel.descricao">
             </div>
             <div>
-                <label>Campo 2:</label>
-                <input type="text" [(ngModel)]="novoBem.campo2">
+                <label>Valor:</label>
+                <input type="number" [(ngModel)]="novoBemMovel.valor">
             </div>
-            <button class="dialogAddButton" (click)="adicionarNovoBem(); mostrarDialog.close()">Adicionar</button>
+            <br>
+            <!-- Tabela de Arquivos -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome do Arquivo</th>
+                        <th>Tamanho</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let arquivo of arquivos">
+                        <td>{{ arquivo.nome }}</td>
+                        <td>{{ arquivo.tamanho }}</td>
+                        <td>
+                            <button class="actionButton" (click)="handleFileTable('remove', arquivo)">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <button class="tableButton" (click)="handleFileTable('add')">Adicionar Arquivo</button>
+            </div>
+            <button class="dialogAddButton" (click)="adicionarNovoBemALista(); mostrarDialog.close()">Adicionar</button>
             <button class="dialogCloseButton" (click)="mostrarDialog.close()">Voltar</button>
         </dialog>
 
-        <!-- Tabela de Arquivos -->
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome do Arquivo</th>
-                    <th>Tamanho</th>
-                    <th>Ação</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let arquivo of arquivos">
-                    <td>{{ arquivo.nome }}</td>
-                    <td>{{ arquivo.tamanho }}</td>
-                    <td>
-                        <button class="actionButton" (click)="removerArquivo(arquivo)">Excluir</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div>
-            <button (click)="openFileDialog()">Adicionar Arquivo</button>
-        </div>
         <button class="submitButton" (click)="onSubmit()"> Adicionar/Ingressar Bens
             Móveis
         </button>
