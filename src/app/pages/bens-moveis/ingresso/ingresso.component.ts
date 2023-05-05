@@ -35,17 +35,6 @@ export class IngressoComponent {
   selectedOption!: string;
 
   // table for bens-moveis
-  bens = [
-    {
-      nome: 'cadeira',
-      descricao: 'cadeira de madeira',
-      valor: 50.0,
-      arquivosAnexados: ['foto_cadeira1.jpg', 'foto_cadeira2.jpg'],
-    },
-  ];
-
-  //novoBem = { nome: '', descricao: '', valor: '', arquivosAnexados: [] };
-
   novoIngresso: Ingresso = {
     tipoIngresso: '',
     bensMoveis: [],
@@ -83,25 +72,13 @@ export class IngressoComponent {
     }
 
     if (action === 'remove') {
-      const index = this.bens.indexOf(bem);
-      if (index > -1) {
-        this.bens.splice(index, 1);
-      }
+      console.log('remove');
     }
   }
 
   @ViewChild('mostrarDialog') mostrarDialog: any;
 
   adicionarNovoBemALista() {
-    /*{this.bens.push(this.novoBemMovel);
-    this.mostrarDialog = false; // atualiza a variável de classe
-    this.novoBemMovel = {
-      nome: '',
-      descricao: '',
-      valor: 0,
-      arquivosAnexados: [],
-      }; // limpa o formulário
-    }*/
     this.novoIngresso.bensMoveis.push(this.novoBemMovel);
     this.novoBemMovel = {
       nome: '',
@@ -112,7 +89,9 @@ export class IngressoComponent {
   }
 
   onSubmit() {
-    this.ingressoService.criarIngresso(this.novoIngresso).subscribe(
+    console.log('entered onSubmit');
+    this.novoIngresso.tipoIngresso = this.selectedOption;
+    this.ingressoService.createIngresso(this.novoIngresso).subscribe(
       (ingressoCriado) => {
         console.log('Ingresso criado:', ingressoCriado);
         // faça algo com o ingresso criado, se necessário
@@ -123,10 +102,6 @@ export class IngressoComponent {
       }
     );
   }
-
-  /*fecharDialog() {
-    this.mostrarDialog = false;
-  }*/
 
   //table for files
 
@@ -168,61 +143,4 @@ export class IngressoComponent {
       }
     }
   }
-
-  /*handleFileTable(action: string, arquivo?: { nome: string; tamanho: string }) {
-    const openFileDialog = () => {
-      const fileInput = document.createElement('input');
-      fileInput.type = 'file';
-      fileInput.multiple = true;
-      fileInput.accept = this.allowedTypes.join(',');
-
-      fileInput.addEventListener('change', (event) => {
-        const inputElement = event.target as HTMLInputElement; // especifica o tipo de event.target como HTMLInputElement
-        if (inputElement && inputElement.files) {
-          // verifica se inputElement e inputElement.files não são null
-          const files = inputElement.files;
-          for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            const tamanho = (file.size / 1024 / 1024).toFixed(2) + ' MB';
-            this.arquivos.push({ nome: file.name, tamanho: tamanho });
-          }
-        }
-      });
-
-      fileInput.click();
-    };
-    const removerArquivo = (arquivo: { nome: string; tamanho: string }) => {
-      if (arquivo === undefined) {
-        return;
-      }
-
-      const index = this.arquivos.indexOf(arquivo);
-      if (index > -1) {
-        this.arquivos.splice(index, 1);
-      }
-    };
-    if (action === 'add') {
-      openFileDialog();
-    }
-    if (action === 'remove') {
-      removerArquivo(arquivo!);
-    }
-  }*/
-
-  /*fileDropped(event: CdkDragDrop<NgxFileDropEntry[]>) {
-    const dropped = event.item;
-    if (dropped instanceof FileSystemFileEntry) {
-      const fileEntry = dropped as FileSystemFileEntry;
-      fileEntry.file((file: File) => {
-        if (this.allowedTypes.indexOf(file.type) > -1) {
-          const tamanho = (file.size / 1024 / 1024).toFixed(2) + ' MB';
-          this.arquivos.push({ nome: file.name, tamanho: tamanho });
-        }
-      });
-    }
-  }*/
-
-  /*drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.arquivos, event.previousIndex, event.currentIndex);
-  }*/
 }

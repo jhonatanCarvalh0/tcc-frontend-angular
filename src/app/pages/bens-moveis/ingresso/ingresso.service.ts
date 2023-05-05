@@ -7,11 +7,12 @@ import { Ingresso } from 'src/app/models/ingresso';
   providedIn: 'root',
 })
 export class IngressoService {
-  private url = 'http://localhost:3000/bens-moveis/ingresso';
+  private createIngressosUrl =
+    'http://localhost:3000/bens-moveis/create-ingresso';
 
   constructor(private http: HttpClient) {}
 
-  criarIngresso(ingresso: Ingresso): Observable<Ingresso> {
-    return this.http.post<Ingresso>(this.url, ingresso);
+  createIngresso(ingresso: Ingresso): Observable<Ingresso> {
+    return this.http.post<Ingresso>(this.createIngressosUrl, ingresso);
   }
 }

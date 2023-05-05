@@ -3,7 +3,7 @@
         <h2>Ingresso de Bens Móveis</h2>
         <label for="tipo-ingresso">Selecione o tipo de ingresso:</label>
         <select id="tipo-ingresso" name="tipo-ingresso" [(ngModel)]="selectedOption">
-            <option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+            <option *ngFor="let option of options" [value]="option.value" [(ngModel)]="novoIngresso.tipoIngresso">{{ option.label }}</option>
         </select>
 
         <!-- Componente da Tabela -->

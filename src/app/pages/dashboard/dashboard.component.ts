@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BensMoveisService } from '../bens-moveis/bens-moveis.service';
+import { BemMovel } from 'src/app/models/ingresso';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +8,7 @@ import { BensMoveisService } from '../bens-moveis/bens-moveis.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  bensMoveis = [
+  bensMoveisTeste = [
     {
       nome: 'nome',
       descricao: 'descricao',
@@ -18,14 +19,20 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
+  bensMoveis: any[] = [];
+
   constructor(private bensMoveisService: BensMoveisService) {}
 
   ngOnInit(): void {
-    console.log('ngOinit');
+    this.bensMoveisService.findAll().subscribe((bensMoveis: any) => {
+      this.bensMoveis = bensMoveis;
+      console.log(this.bensMoveis);
+      
+    });
   }
+
   showConsoleLog(action: string): void {
     console.log(`Ação "${action}" selecionada`);
     alert(`Ação "${action}" selecionada`);
   }
-
 }
