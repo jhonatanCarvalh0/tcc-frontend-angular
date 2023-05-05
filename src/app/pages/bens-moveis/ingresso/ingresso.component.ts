@@ -58,6 +58,15 @@ export class IngressoComponent {
     arquivosAnexados: [],
   };
 
+  arquivos: { nome: string; tamanho: number }[] = [];
+  allowedTypes = [
+    'application/pdf',
+    'image/jpeg',
+    'image/png',
+    'application/msword',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  ];
+
   constructor(private ingressoService: IngressoService) {}
 
   alert() {
@@ -120,16 +129,47 @@ export class IngressoComponent {
   }*/
 
   //table for files
-  arquivos: { nome: string; tamanho: string }[] = [];
-  allowedTypes = [
-    'application/pdf',
-    'image/jpeg',
-    'image/png',
-    'application/msword',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-  ];
 
-  handleFileTable(action: string, arquivo?: { nome: string; tamanho: string }) {
+  adicionarArquivo(event: any) {
+    const files = event.target.files;
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      this.arquivos.push(file);
+      this.novoBemMovel.arquivosAnexados.push(file.name);
+    }
+  }
+  handleFileTable(
+    action: string,
+    arquivo?: { nome: string; tamanho: number }
+  ): void {
+    if (action === 'add') {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.multiple = true;
+      input.accept = 'image/*';
+      input.onchange = () => {
+        for (let i = 0; i < input.files!.length; i++) {
+          const entry = input.files![i];
+          const newFile = {
+            nome: entry.name,
+            tamanho: entry.size,
+            tipo: entry.type,
+            conteudo: entry,
+          };
+          this.arquivos.push(newFile);
+        }
+      };
+      input.click();
+    } else if (action === 'remove' && arquivo) {
+      const fileInfo = { nome: arquivo.nome, tamanho: arquivo.tamanho };
+      const index = this.arquivos.indexOf(fileInfo);
+      if (index !== -1) {
+        this.arquivos.splice(index, 1);
+      }
+    }
+  }
+
+  /*handleFileTable(action: string, arquivo?: { nome: string; tamanho: string }) {
     const openFileDialog = () => {
       const fileInput = document.createElement('input');
       fileInput.type = 'file';
@@ -167,7 +207,7 @@ export class IngressoComponent {
     if (action === 'remove') {
       removerArquivo(arquivo!);
     }
-  }
+  }*/
 
   /*fileDropped(event: CdkDragDrop<NgxFileDropEntry[]>) {
     const dropped = event.item;
