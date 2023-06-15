@@ -41,7 +41,11 @@
             </div>
             <div>
                 <label>Valor:</label>
-                <input type="number" [(ngModel)]="novoBemMovel.valor">
+                <input type="text" [(ngModel)]="novoBemMovel.valor">
+            </div>
+            <div>
+                <input type="number" [(ngModel)]="novoBemMovel.valor" [ngModelOptions]="{ updateOn: 'blur' }" />
+                <p>{{ novoBemMovel.valor | currency:'BRL':'symbol':'1.2-2' }}</p>
             </div>
             <br>
             <!-- Tabela de Arquivos -->

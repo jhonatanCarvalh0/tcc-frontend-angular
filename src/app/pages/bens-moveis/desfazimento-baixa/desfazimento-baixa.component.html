@@ -1,5 +1,94 @@
 <app-dashboard-layout>
-    <div class="main-container">
-        <h1>hello world!</h1>
+    <div class="selecionador-de-bem-para-baixa-de-bem-movel">
+        <!-- TITULO DA PÁGINA -->
+        <h2>Baixa de Bens Móveis</h2>
+
+        <!-- TABELA DE SELEÇÃO DE BEM PARA BAIXA -->
+        <div class="main-container">
+            <!-- TITLE -->
+            <div class="main-header anim" style="--delay: 0s">Tabela de Bem para Seleção</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome do Bem</th>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Arquivos Anexados</th>
+                        <th>Forma de Ingresso</th>
+                        <th>Cod. de Ingresso</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let bem of bensMoveis" [class.selected]="bem.isSelected">
+                        <td>{{ bem.nome }}</td>
+                        <td>{{ bem.descricao }}</td>
+                        <td>{{ bem.valor }}</td>
+                        <td>{{ bem.arquivosAnexados.length }}</td>
+                        <td>{{ bem.tipoIngresso }}</td>
+                        <td>{{ bem.ingressoId }}</td>
+                        <td><button class="actionButton" (click)="selectItem(bem)">
+                                {{ bem.isSelected ? 'Selecionado' : 'Selecionar' }}
+                            </button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <!-- CAMPOS DO FORMULÁRIO -->
+        <form>
+            <label for="motivoDesfazimento">Motivo para desfazimento:</label>
+            <input type="text" id="motivoDesfazimento" name="motivoDesfazimento">
+
+            <label for="valor">Valor estimável:</label>
+            <input type="text" id="valor" name="valor" step="0.01" (change)="formatCurrency($event)">
+            <label for="condicaoBem">Condição do bem:</label>
+            <input type="text" id="condicaoBem" name="condicaoBem">
+
+            <label for="dataPrevistaDesfazimento">Data prevista para desfazimento:</label>
+            <input type="date" id="dataPrevistaDesfazimento" name="dataPrevistaDesfazimento">
+
+            <!-- Tabela de Arquivos -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome do Arquivo</th>
+                        <th>Tamanho</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let arquivo of arquivos">
+                        <td>{{ arquivo.nome }}</td>
+                        <td>{{ arquivo.tamanho }}</td>
+                        <td>
+                            <button class="actionButton" (click)="handleFileTable('remove', arquivo)">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <button class="tableButton" (click)="handleFileTable('add')">Adicionar Arquivo</button>
+            </div>
+
+            <label for="informacaoContato">Informação para contato:</label>
+            <input type="text" id="informacaoContato" name="informacaoContato">
+
+            <button class="submitButton" (click)="mostrarDialog.showModal()">Confirmar desfazimento</button>
+        </form>
+        <dialog #mostrarDialog>
+            <p>Deseja prosseguir e continuar o desfazimento do bem móvel?</p>
+            <div class="checkbox-container">
+                <input type="checkbox" id="termosCondicoes" name="termosCondicoes">
+                <label for="termosCondicoes">Aceito os termos e condições:</label>
+            </div>
+
+            <button onclick="confirmDisposal()">Sim</button>
+            <button (click)="mostrarDialog.close()">Não</button>
+        </dialog>
+
     </div>
+    <!-- DIALOG DE CONFIRMAÇÃO -->
+
 </app-dashboard-layout>

@@ -7,6 +7,7 @@ import { IngressoService } from './ingresso.service';
 
 //models
 import { Ingresso, BemMovel } from '../../../models/ingresso'; // importe os modelos de dados necessários
+import { STRING_TYPE } from '@angular/compiler';
 
 @Component({
   selector: 'app-ingresso',
@@ -58,10 +59,12 @@ export class IngressoComponent {
 
   constructor(private ingressoService: IngressoService) {}
 
+  //for test purposes
   alert() {
     return console.log('funcionando');
   }
 
+  //handel table actions as show, edit and remove
   tableActions(action: string, bem: BemMovel) {
     if (action === 'show') {
       console.log('show');
@@ -77,7 +80,9 @@ export class IngressoComponent {
   }
 
   @ViewChild('mostrarDialog') mostrarDialog: any;
+  
 
+  //handle table bens moveis from ingresso
   adicionarNovoBemALista() {
     this.novoIngresso.bensMoveis.push(this.novoBemMovel);
     this.novoBemMovel = {
@@ -88,9 +93,14 @@ export class IngressoComponent {
     };
   }
 
+  //seng the data to backend
   onSubmit() {
     console.log('entered onSubmit');
     this.novoIngresso.tipoIngresso = this.selectedOption;
+    if (typeof this.novoBemMovel.valor === 'string') {
+      this.novoBemMovel.valor = parseFloat(this.novoBemMovel.valor);
+    }
+
     this.ingressoService.createIngresso(this.novoIngresso).subscribe(
       (ingressoCriado) => {
         console.log('Ingresso criado:', ingressoCriado);
@@ -103,16 +113,7 @@ export class IngressoComponent {
     );
   }
 
-  //table for files
-
-  adicionarArquivo(event: any) {
-    const files = event.target.files;
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      this.arquivos.push(file);
-      this.novoBemMovel.arquivosAnexados.push(file.name);
-    }
-  }
+  //handle the table of files
   handleFileTable(
     action: string,
     arquivo?: { nome: string; tamanho: number }
@@ -131,6 +132,7 @@ export class IngressoComponent {
             tipo: entry.type,
             conteudo: entry,
           };
+          this.novoBemMovel.arquivosAnexados.push(arquivo);
           this.arquivos.push(newFile);
         }
       };

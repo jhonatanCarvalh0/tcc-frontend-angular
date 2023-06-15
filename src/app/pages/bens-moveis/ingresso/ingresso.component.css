@@ -87,12 +87,14 @@ button {
   transition: background 0.4s;
 }
 
-.dialogAddButton, .dialogAddButton:hover {
+.dialogAddButton,
+.dialogAddButton:hover {
   background-color: greenyellow;
   color: #1f1d2b;
 }
 
-.dialogCloseButton, .dialogCloseButton:hover {
+.dialogCloseButton,
+.dialogCloseButton:hover {
   background-color: red;
   color: white;
 }

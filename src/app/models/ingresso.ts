@@ -6,6 +6,6 @@ export interface Ingresso {
 export interface BemMovel {
   nome: string;
   descricao: string;
-  valor: number;
-  arquivosAnexados: string[];
+  valor: number | string;
+  arquivosAnexados: any[];
 }
