@@ -10,12 +10,17 @@
             </span>
         </a>
         <div class="error-msg" *ngIf="showError">
-            Usuário ja cadastrado! Tente outro email ou faça login!
+            Erro! Tente novame!
         </div>
-        <!-- name field -->
+        <!-- nome field -->
         <div class="wrap-input">
-            <input [ngClass]="name !== '' ? 'has-val input' : 'input'" [(ngModel)]="name" type="name" name="name" />
+            <input [ngClass]="nome !== '' ? 'has-val input' : 'input'" [(ngModel)]="nome" type="name" name="name" />
             <span class="focus-input" [attr.data-placeholder]="'Nome'"></span>
+        </div>
+        <!-- cpf field -->
+        <div class="wrap-input">
+            <input [ngClass]="cpf !== '' ? 'has-val input' : 'input'" [(ngModel)]="cpf" type="name" name="name" />
+            <span class="focus-input" [attr.data-placeholder]="'cpf'"></span>
         </div>
         <!-- email field -->
         <div class="wrap-input">
@@ -24,9 +29,21 @@
         </div>
         <!-- password field -->
         <div class="wrap-input">
-            <input [ngClass]="password !== '' ? 'has-val input' : 'input'" [(ngModel)]="password" type="password"
-                name="password" />
-            <span class="focus-input" [attr.data-placeholder]="'Password'"></span>
+            <input [ngClass]="senha !== '' ? 'has-val input' : 'input'" [(ngModel)]="senha" type="password"
+                name="senha" />
+            <span class="focus-input" [attr.data-placeholder]="'senha'"></span>
+        </div>
+        <!-- orgaoId field -->
+        <div class="wrap-input">
+            <input [ngClass]="orgaoId !== '' ? 'has-val input' : 'input'" [(ngModel)]="orgaoId" type="name"
+                name="name" />
+            <span class="focus-input" [attr.data-placeholder]="'orgaoId'"></span>
+        </div>
+        <!-- setorId field -->
+        <div class="wrap-input">
+            <input [ngClass]="setorId !== '' ? 'has-val input' : 'input'" [(ngModel)]="setorId" type="name"
+                name="name" />
+            <span class="focus-input" [attr.data-placeholder]="'setorId'"></span>
         </div>
         <!-- register form button -->
         <div class="container-login-form-btn">

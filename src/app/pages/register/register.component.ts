@@ -12,17 +12,23 @@ interface RegisterResponse {
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  name = '';
+  nome = '';
+  cpf = '';
   email = '';
-  password = '';
+  senha = '';
+  setorId = '';
+  orgaoId = '';
   showError = false;
   constructor(private http: HttpClient, private router: Router) {}
 
   register() {
     const credentials = {
-      username: this.name,
+      nome: this.nome,
+      cpf: this.cpf,
       email: this.email,
-      password: this.password,
+      senha: this.senha,
+      setorId: parseInt(this.setorId),
+      orgaoId: parseInt(this.orgaoId),
     };
 
     this.http

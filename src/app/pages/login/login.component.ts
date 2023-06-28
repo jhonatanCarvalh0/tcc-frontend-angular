@@ -13,7 +13,7 @@ interface LoginResponse {
 })
 export class LoginComponent {
   email = '';
-  password = '';
+  senha = '';
   showError = false;
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -21,7 +21,7 @@ export class LoginComponent {
   login() {
     const credentials = {
       email: this.email,
-      password: this.password,
+      senha: this.senha,
     };
 
     this.http
@@ -31,8 +31,11 @@ export class LoginComponent {
           console.log(response);
           // Store the token in local storage
           localStorage.setItem('token', response.acess_token);
+          console.log('dps de localstorage');
+
           // Navigate to the dashboard page
           this.router.navigate(['/dashboard']); // Navigate to the dashboard page
+          console.log('dps de router');
         },
         (error) => {
           console.log(error);
